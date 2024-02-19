@@ -7,7 +7,7 @@ import com.fasterxml.jackson.dataformat.javaprop.JavaPropsMapper;
 import java.io.IOException;
 import java.util.Properties;
 
-public class JsonServiceImpl implements JsonService {
+public class JsonServiceImpl implements IJsonService {
     @Override
     public Object deserializeJsonObjectToJavaClass(String jsonObject, Class<?> javaClass) {
         try {

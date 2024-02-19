@@ -8,7 +8,7 @@ import java.util.Properties;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonServiceTest {
-    private JsonService jsonService;
+    private IJsonService jsonService;
     private static final String color = "Black";
     static String json = "{\"color\":\"" + color + "\"}";
     static class Car {

@@ -1,14 +1,14 @@
 package com.khepri.black.services.systems.file;
 
-import com.khepri.black.services.json.JsonService;
+import com.khepri.black.services.json.IJsonService;
 import com.khepri.black.services.json.JsonServiceImpl;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
-public class FileSystemServiceImpl implements FileSystemService {
+public class FileSystemServiceImpl implements IFileSystemService {
     @Override
     public String read_text_file(String filePath) {
         try {
@@ -28,7 +28,28 @@ public class FileSystemServiceImpl implements FileSystemService {
     @Override
     public Properties getPropertiesFromJsonFile(String filePath) {
         String jsonFileContent = read_text_file(filePath);
-        JsonService jsonService = new JsonServiceImpl();
+        IJsonService jsonService = new JsonServiceImpl();
         return jsonService.getPropertiesFromJsonObject(jsonFileContent);
+    }
+
+    @Override
+    public Integer executeCommand(List<String> command) {
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.command(command);
+            Process process = processBuilder.start();
+            InputStream inputStream = process.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            process.waitFor();
+            return process.exitValue();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

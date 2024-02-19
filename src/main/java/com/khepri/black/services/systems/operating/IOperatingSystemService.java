@@ -1,5 +1,5 @@
 package com.khepri.black.services.systems.operating;
 
-public interface OperatingSystemService {
+public interface IOperatingSystemService {
     String getUserHomeDirectory();
 }
