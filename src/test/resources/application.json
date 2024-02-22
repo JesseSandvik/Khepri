@@ -2,6 +2,5 @@
   "name": "echo",
   "version": "1.0.0",
   "synopsis": "Outputs provided parameters to that console",
-  "description": "Modelled after the unix command of the same name, echo can be utilized to safely run the khepri black application end to end in isolation.",
-  "commands": []
+  "description": "Modelled after the unix command of the same name, echo can be utilized to safely run the khepri black application end to end in isolation."
 }
