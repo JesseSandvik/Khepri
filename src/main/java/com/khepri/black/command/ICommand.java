@@ -1,5 +1,8 @@
 package com.khepri.black.command;
 
+import com.khepri.black.command.models.PositionalParameter;
+
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 
@@ -14,4 +17,6 @@ public interface ICommand extends Callable<Integer> {
     void setDescription(String description);
     Properties getProperties();
     void setProperties(Properties properties);
+    List<PositionalParameter> getPositionalParameters();
+    void addPositionalParameter(PositionalParameter positionalParameter);
 }
