@@ -20,6 +20,7 @@ public class ExecutorCommand extends CommandImpl {
 
         getPositionalParameters()
                 .forEach(positionalParameter -> command.add((String) positionalParameter.getValue()));
+        getOptions().forEach(option -> command.add((String) option.getValue()));
 
         IFileSystemService fileSystemService = new FileSystemServiceImpl();
         return fileSystemService.executeCommand(command);

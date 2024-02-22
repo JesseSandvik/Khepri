@@ -1,6 +1,7 @@
 package com.khepri.black.command;
 
 import com.khepri.black.command.models.CommandAttributes;
+import com.khepri.black.command.models.Option;
 import com.khepri.black.command.models.PositionalParameter;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Properties;
 public abstract class CommandImpl extends CommandAttributes implements ICommand {
     private Properties properties;
     private final List<PositionalParameter> positionalParameters = new ArrayList<>();
+    private final List<Option> options = new ArrayList<>();
 
     @Override
     public Properties getProperties() {
@@ -29,5 +31,15 @@ public abstract class CommandImpl extends CommandAttributes implements ICommand 
     @Override
     public void addPositionalParameter(PositionalParameter positionalParameter) {
         positionalParameters.add(positionalParameter);
+    }
+
+    @Override
+    public List<Option> getOptions() {
+        return options;
+    }
+
+    @Override
+    public void addOption(Option option) {
+        options.add(option);
     }
 }

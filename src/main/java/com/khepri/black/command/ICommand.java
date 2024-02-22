@@ -1,5 +1,6 @@
 package com.khepri.black.command;
 
+import com.khepri.black.command.models.Option;
 import com.khepri.black.command.models.PositionalParameter;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface ICommand extends Callable<Integer> {
     void setProperties(Properties properties);
     List<PositionalParameter> getPositionalParameters();
     void addPositionalParameter(PositionalParameter positionalParameter);
+    List<Option> getOptions();
+    void addOption(Option option);
 }
