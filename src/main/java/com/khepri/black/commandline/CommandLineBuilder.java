@@ -3,6 +3,7 @@ package com.khepri.black.commandline;
 import com.khepri.black.command.CommandFactory;
 import com.khepri.black.command.CommandType;
 import com.khepri.black.command.ICommand;
+import com.khepri.black.command.models.Option;
 import com.khepri.black.command.models.PositionalParameter;
 import com.khepri.black.services.systems.file.FileSystemServiceImpl;
 
@@ -38,6 +39,20 @@ public class CommandLineBuilder {
             positionalParameter.setLabel(properties.getProperty("positionalParameters." + index + ".label"));
             positionalParameter.setSynopsis(properties.getProperty("positionalParameters." + index + ".synopsis"));
             rootCommand.addPositionalParameter(positionalParameter);
+            index += 1;
+        }
+        return this;
+    }
+
+    public CommandLineBuilder setOptionsFromProperties() {
+        Properties properties = rootCommand.getProperties();
+        int index = 1;
+        while (properties.getProperty("options." + index + ".longName") != null) {
+            Option option = new Option();
+            option.setLongName(properties.getProperty("options." + index + ".longName"));
+            option.setShortName(properties.getProperty("options." + index + ".shortName"));
+            option.setSynopsis(properties.getProperty("options." + index + ".synopsis"));
+            rootCommand.addOption(option);
             index += 1;
         }
         return this;

@@ -8,5 +8,17 @@
       "label": "text",
       "synopsis": "The text to be output"
     }
+  ],
+  "options": [
+    {
+      "longName": "--help",
+      "shortName": "-h",
+      "synopsis": "Show this help message and exit."
+    },
+    {
+      "longName": "--version",
+      "shortName": "-v",
+      "synopsis": "Print version information and exit."
+    }
   ]
 }

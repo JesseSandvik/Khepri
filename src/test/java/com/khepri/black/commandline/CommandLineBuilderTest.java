@@ -212,4 +212,75 @@ public class CommandLineBuilderTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    void sets_root_command_option_long_name_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("options.1.longName");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setOptionsFromProperties()
+                .build();
+
+        String actual = command.getOptions().get(0).getLongName();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sets_root_command_option_short_name_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("options.1.shortName");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setOptionsFromProperties()
+                .build();
+
+        String actual = command.getOptions().get(0).getShortName();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sets_root_command_option_synopsis_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("options.1.synopsis");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setOptionsFromProperties()
+                .build();
+
+        String actual = command.getOptions().get(0).getSynopsis();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sets_root_command_options_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        int expected = 0;
+        while (properties.getProperty("options." + (expected + 1) + ".longName") != null) {
+            expected += 1;
+        }
+        assertNotEquals(0, expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setOptionsFromProperties()
+                .build();
+
+        int actual = command.getOptions().size();
+        assertNotEquals(0, actual);
+
+        assertEquals(expected, actual);
+    }
 }
