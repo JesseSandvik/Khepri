@@ -30,7 +30,6 @@ public class CommandLineBuilderTest {
     @Test
     void command_name_attribute_loaded_from_json_file() {
         Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
-
         String expected = properties.getProperty("name");
         assertNotNull(expected);
 
@@ -47,7 +46,6 @@ public class CommandLineBuilderTest {
     @Test
     void command_version_attribute_loaded_from_json_file() {
         Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
-
         String expected = properties.getProperty("version");
         assertNotNull(expected);
 
@@ -64,7 +62,6 @@ public class CommandLineBuilderTest {
     @Test
     void command_synopsis_attribute_loaded_from_json_file() {
         Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
-
         String expected = properties.getProperty("synopsis");
         assertNotNull(expected);
 
@@ -81,7 +78,6 @@ public class CommandLineBuilderTest {
     @Test
     void command_description_attribute_loaded_from_json_file() {
         Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
-
         String expected = properties.getProperty("description");
         assertNotNull(expected);
 
@@ -98,7 +94,6 @@ public class CommandLineBuilderTest {
     @Test
     void sets_root_command_name_attribute_from_properties() {
         Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
-
         String expected = properties.getProperty("name");
         assertNotNull(expected);
 
@@ -116,7 +111,6 @@ public class CommandLineBuilderTest {
     @Test
     void sets_root_command_version_attribute_from_properties() {
         Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
-
         String expected = properties.getProperty("version");
         assertNotNull(expected);
 
@@ -134,7 +128,6 @@ public class CommandLineBuilderTest {
     @Test
     void sets_root_command_synopsis_attribute_from_properties() {
         Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
-
         String expected = properties.getProperty("synopsis");
         assertNotNull(expected);
 
@@ -152,7 +145,6 @@ public class CommandLineBuilderTest {
     @Test
     void sets_root_command_description_attribute_from_properties() {
         Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
-
         String expected = properties.getProperty("description");
         assertNotNull(expected);
 
@@ -163,6 +155,60 @@ public class CommandLineBuilderTest {
 
         String actual = command.getDescription();
         assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sets_root_command_positional_parameter_label_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("positionalParameters.1.label");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setPositionalParametersFromProperties()
+                .build();
+
+        String actual = command.getPositionalParameters().get(0).getLabel();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sets_root_command_positional_parameter_synopsis_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("positionalParameters.1.synopsis");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setPositionalParametersFromProperties()
+                .build();
+
+        String actual = command.getPositionalParameters().get(0).getSynopsis();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sets_root_command_positional_parameters_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        int expected = 0;
+        while (properties.getProperty("positionalParameters." + (expected + 1) + ".label") != null) {
+            expected += 1;
+        }
+        assertNotEquals(0, expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setPositionalParametersFromProperties()
+                .build();
+
+        int actual = command.getPositionalParameters().size();
+        assertNotEquals(0, actual);
 
         assertEquals(expected, actual);
     }
