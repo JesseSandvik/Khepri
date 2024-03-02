@@ -12,6 +12,7 @@ public abstract class CommandImpl extends CommandAttributes implements ICommand 
     private Properties properties;
     private final List<PositionalParameter> positionalParameters = new ArrayList<>();
     private final List<Option> options = new ArrayList<>();
+    private final List<ICommand> subcommands = new ArrayList<>();
 
     @Override
     public Properties getProperties() {
@@ -41,5 +42,15 @@ public abstract class CommandImpl extends CommandAttributes implements ICommand 
     @Override
     public void addOption(Option option) {
         options.add(option);
+    }
+
+    @Override
+    public List<ICommand> getSubcommands() {
+        return subcommands;
+    }
+
+    @Override
+    public void addSubcommand(ICommand subcommand) {
+        subcommands.add(subcommand);
     }
 }

@@ -283,4 +283,21 @@ public class CommandLineBuilderTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    void sets_root_command_subcommand_name_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("subcommands.1.name");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setSubcommandsFromProperties()
+                .build();
+
+        String actual = command.getSubcommands().get(0).getName();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
 }

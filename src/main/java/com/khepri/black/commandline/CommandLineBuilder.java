@@ -58,6 +58,19 @@ public class CommandLineBuilder {
         return this;
     }
 
+    public CommandLineBuilder setSubcommandsFromProperties() {
+        Properties properties = rootCommand.getProperties();
+        int index = 1;
+        while (properties.getProperty("subcommands." + index + ".name") != null) {
+            ICommand subcommand = CommandFactory.create(
+                    properties.getProperty("subcommands." + index + ".name"),
+                    CommandType.EXECUTOR);
+            rootCommand.addSubcommand(subcommand);
+            index += 1;
+        }
+        return this;
+    }
+
     public ICommand build() {
         return rootCommand;
     }

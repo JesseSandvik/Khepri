@@ -22,4 +22,6 @@ public interface ICommand extends Callable<Integer> {
     void addPositionalParameter(PositionalParameter positionalParameter);
     List<Option> getOptions();
     void addOption(Option option);
+    List<ICommand> getSubcommands();
+    void addSubcommand(ICommand subcommand);
 }

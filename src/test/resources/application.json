@@ -20,5 +20,10 @@
       "shortName": "-v",
       "synopsis": "Print version information and exit."
     }
+  ],
+  "subcommands": [
+    {
+      "name": "help"
+    }
   ]
 }
