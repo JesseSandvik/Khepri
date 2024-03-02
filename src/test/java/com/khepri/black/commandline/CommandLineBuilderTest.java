@@ -300,4 +300,58 @@ public class CommandLineBuilderTest {
 
         assertEquals(expected, actual);
     }
+
+
+    @Test
+    void sets_root_command_subcommand_version_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("subcommands.1.version");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setSubcommandsFromProperties()
+                .build();
+
+        String actual = command.getSubcommands().get(0).getVersion();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    void sets_root_command_subcommand_synopsis_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("subcommands.1.synopsis");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setSubcommandsFromProperties()
+                .build();
+
+        String actual = command.getSubcommands().get(0).getSynopsis();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    void sets_root_command_subcommand_description_from_properties() {
+        Properties properties = new FileSystemServiceImpl().getPropertiesFromJsonFile(jsonPropertiesFilePath);
+        String expected = properties.getProperty("subcommands.1.description");
+        assertNotNull(expected);
+
+        command = new CommandLineBuilder()
+                .getPropertiesFromJsonFile(jsonPropertiesFilePath)
+                .setSubcommandsFromProperties()
+                .build();
+
+        String actual = command.getSubcommands().get(0).getDescription();
+        assertNotNull(actual);
+
+        assertEquals(expected, actual);
+    }
 }
