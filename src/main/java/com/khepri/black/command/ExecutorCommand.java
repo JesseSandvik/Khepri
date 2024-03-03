@@ -1,7 +1,6 @@
 package com.khepri.black.command;
 
-import com.khepri.black.services.systems.file.FileSystemServiceImpl;
-import com.khepri.black.services.systems.file.IFileSystemService;
+import com.khepri.black.filesystem.FileSystemService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +15,19 @@ public class ExecutorCommand extends CommandImpl {
 
         List<String> command = new ArrayList<>();
         Properties properties = getProperties();
-        command.add(properties.getProperty("executable.file.path"));
+        command.add(properties.getProperty("executableFilePath"));
 
-        getPositionalParameters()
-                .forEach(positionalParameter -> command.add((String) positionalParameter.getValue()));
-        getOptions().forEach(option -> command.add((String) option.getValue()));
+        getPositionalParameters().forEach(positionalParameter -> {
+            if (positionalParameter.getValue() != null) {
+                command.add((String) positionalParameter.getValue());
+            }
+        });
 
-        IFileSystemService fileSystemService = new FileSystemServiceImpl();
-        return fileSystemService.executeCommand(command);
+        getOptions().forEach(option -> {
+            if (option.getValue() != null) {
+                command.add((String) option.getValue());
+            }
+        });
+        return FileSystemService.executeCommand(command);
     }
 }

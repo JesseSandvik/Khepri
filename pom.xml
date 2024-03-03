@@ -12,6 +12,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <apache.commons.io.version>RELEASE113</apache.commons.io.version>
         <graal.version>23.0.0</graal.version>
         <jackson.version>2.16.1</jackson.version>
         <junit.version>5.10.2</junit.version>
@@ -22,6 +23,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>org-apache-commons-io</artifactId>
+            <version>${apache.commons.io.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.graalvm.nativeimage</groupId>
             <artifactId>svm</artifactId>

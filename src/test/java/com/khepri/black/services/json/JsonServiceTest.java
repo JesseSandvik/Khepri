@@ -1,5 +1,6 @@
 package com.khepri.black.services.json;
 
+import com.khepri.black.json.JsonService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ public class JsonServiceTest {
 
     @BeforeEach
     void initializeJsonService() {
-        this.jsonService = new JsonServiceImpl();
+        this.jsonService = new JsonService();
     }
 
     @Test

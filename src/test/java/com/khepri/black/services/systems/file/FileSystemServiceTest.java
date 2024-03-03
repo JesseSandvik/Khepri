@@ -1,5 +1,6 @@
 package com.khepri.black.services.systems.file;
 
+import com.khepri.black.filesystem.FileSystemService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ public class FileSystemServiceTest {
 
     @BeforeEach
     void initializeFileSystemService() {
-        this.fileSystemService = new FileSystemServiceImpl();
+        this.fileSystemService = new FileSystemService();
     }
 
     @BeforeEach

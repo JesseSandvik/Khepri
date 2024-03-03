@@ -10,7 +10,7 @@ public class OperatingSystemServiceTest {
 
     @BeforeEach
     void initializeOperatingSystemService() {
-        operatingSystemService = new OperatingSystemServiceImpl();
+        operatingSystemService = new OperatingSystemService();
     }
 
     @Test

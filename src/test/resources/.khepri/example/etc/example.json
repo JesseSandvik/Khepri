@@ -1,0 +1,37 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "synopsis": "Output provided parameters to the console",
+  "description": "Modelled after the unix command 'echo', this example command can be utilized to out text to the console.\n\nAdditionally, the example command is a template and demonstration for how to create a new khepri black command line project.",
+  "executableFilePath": "src/test/resources/.khepri/example/bin/example",
+    "positionalParameters": [
+      {
+        "label": "text",
+        "synopsis": "The text to be output"
+      }
+    ],
+    "options": [
+      {
+        "longName": "--help",
+        "shortName": "-h",
+        "synopsis": "Show this help message and exit."
+      },
+      {
+        "longName": "--version",
+        "shortName": "-v",
+        "synopsis": "Print version information and exit."
+      }
+    ],
+    "subcommandsBaseDirectory": "lib",
+    "subcommands": [
+      {
+        "name": "example-subcommand"
+      },
+      {
+        "name": "help"
+      },
+      {
+        "name": "version"
+      }
+    ]
+}
