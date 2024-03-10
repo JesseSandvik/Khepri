@@ -52,6 +52,17 @@ public class CommandPropertiesLoader {
         }
     }
 
+    private void loadCommandSubcommandsFromProperties(Properties properties) {
+        int index = 1;
+        while (properties.getProperty("subcommands." + index + ".name") != null) {
+            ICommand subcommand = CommandFactory.create(CommandType.EXECUTOR);
+            subcommand.setName(properties.getProperty("subcommands." + index + ".name"));
+            subcommand.setVersion(properties.getProperty("subcommands." + index + ".version"));
+            command.addSubcommand(subcommand);
+            index += 1;
+        }
+    }
+
     public ICommand load() {
         commandPropertiesLoaderSource.load(command, propertiesSource);
         loadCommandAttributesFromProperties(command.getProperties());

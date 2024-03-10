@@ -1,7 +1,5 @@
 package com.khepri.black.filesystem.file;
 
-import com.khepri.black.filesystem.file.IFileHandler;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;

@@ -25,13 +25,18 @@
     "subcommandsBaseDirectory": "lib",
     "subcommands": [
       {
-        "name": "example-subcommand"
+        "name": "example-subcommand",
+        "version": "1.1.2"
       },
       {
-        "name": "help"
+        "name": "help",
+        "version": "1.0.0",
+        "synopsis": "Show this help message and exit."
       },
       {
-        "name": "version"
+        "name": "version",
+        "version": "1.0.0",
+        "synopsis": "Print version information and exit."
       }
     ]
 }
