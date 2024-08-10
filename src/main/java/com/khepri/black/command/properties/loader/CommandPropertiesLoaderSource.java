@@ -9,6 +9,7 @@ import java.util.Properties;
 public enum CommandPropertiesLoaderSource {
 
     FILE {
+
         @Override
         public void load(ICommand command, String source) {
             FileService fileService = new FileService(source);

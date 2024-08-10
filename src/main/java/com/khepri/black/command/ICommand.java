@@ -16,6 +16,8 @@ public interface ICommand extends Callable<Integer> {
     void setSynopsis(String synopsis);
     String getDescription();
     void setDescription(String description);
+    String[] getOriginalArguments();
+    void setOriginalArguments(String[] originalArguments);
     Properties getProperties();
     void setProperties(Properties properties);
     List<PositionalParameter> getPositionalParameters();

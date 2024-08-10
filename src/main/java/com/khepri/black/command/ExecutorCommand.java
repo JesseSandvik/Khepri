@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class ExecutorCommand extends CommandImpl {
+public class ExecutorCommand extends Command {
+
     @Override
     public Integer call() {
         if (getProperties() == null || getProperties().isEmpty()) {
-            return 0;
+            return 1;
         }
 
         List<String> command = new ArrayList<>();

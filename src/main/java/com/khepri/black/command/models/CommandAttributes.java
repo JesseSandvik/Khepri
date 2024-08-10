@@ -5,6 +5,7 @@ public class CommandAttributes {
     private String version;
     private String synopsis;
     private String description;
+    private String[] originalArguments;
 
     public String getName() {
         return name;
@@ -37,4 +38,8 @@ public class CommandAttributes {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String[] getOriginalArguments() { return originalArguments; }
+
+    public void setOriginalArguments(String[] originalArguments) { this.originalArguments = originalArguments; }
 }

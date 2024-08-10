@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public abstract class CommandImpl extends CommandAttributes implements ICommand {
+public abstract class Command extends CommandAttributes implements ICommand {
     private Properties properties;
     private final List<PositionalParameter> positionalParameters = new ArrayList<>();
     private final List<Option> options = new ArrayList<>();

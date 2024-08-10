@@ -11,7 +11,7 @@ import java.util.Properties;
 public class CommandPropertiesLoader {
     private final ICommand command;
     private String propertiesSource;
-    private CommandPropertiesLoaderSource commandPropertiesLoaderSource = CommandPropertiesLoaderSource.FILE;
+    private final CommandPropertiesLoaderSource commandPropertiesLoaderSource = CommandPropertiesLoaderSource.FILE;
 
     public CommandPropertiesLoader() {
         this.command = CommandFactory.create(CommandType.EXECUTOR);
@@ -23,7 +23,10 @@ public class CommandPropertiesLoader {
     }
 
     private void loadCommandAttributesFromProperties(Properties properties) {
-        command.setName(properties.getProperty("name"));
+        if (command.getName() == null) {
+            command.setName(properties.getProperty("name"));
+        }
+
         command.setVersion(properties.getProperty("version"));
         command.setSynopsis(properties.getProperty("synopsis"));
         command.setDescription(properties.getProperty("description"));
