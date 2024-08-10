@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-class PropertiesFileHandlerImpl implements IFileHandler {
+class PropertiesFileHandler implements IFileHandler {
     @Override
     public Object getFileContent(String path) {
         try (FileInputStream fileInputStream = new FileInputStream(path)) {

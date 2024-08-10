@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class JsonService {
+
     public static Object deserializeJsonObjectToJavaClass(String jsonObject, Class<?> javaClass) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();

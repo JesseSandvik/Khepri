@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-class JsonFileHandlerImpl implements IFileHandler {
+class JsonFileHandler implements IFileHandler {
     @Override
     public Object getFileContent(String path) {
         try {
