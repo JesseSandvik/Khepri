@@ -2,6 +2,7 @@ package com.khepri.black.command;
 
 import com.khepri.black.filesystem.FileSystemService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -9,7 +10,7 @@ import java.util.Properties;
 public class ExecutorCommand extends Command {
 
     @Override
-    public Integer call() {
+    public Integer call() throws IOException, InterruptedException {
         if (getProperties() == null || getProperties().isEmpty()) {
             return 1;
         }

@@ -9,22 +9,14 @@ import java.util.Properties;
 
 public class JsonService {
 
-    public static Object deserializeJsonObjectToJavaClass(String jsonObject, Class<?> javaClass) {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(jsonObject, javaClass);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+    public static Object deserializeJsonObjectToJavaClass(String jsonObject, Class<?> javaClass) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(jsonObject, javaClass);
     }
 
-    public static Properties getPropertiesFromJsonObject(String jsonObject) {
-        try {
-            Object object = deserializeJsonObjectToJavaClass(jsonObject, Object.class);
-            JavaPropsMapper javaPropsMapper = new JavaPropsMapper();
-            return javaPropsMapper.writeValueAsProperties(object);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static Properties getPropertiesFromJsonObject(String jsonObject) throws IOException {
+        Object object = deserializeJsonObjectToJavaClass(jsonObject, Object.class);
+        JavaPropsMapper javaPropsMapper = new JavaPropsMapper();
+        return javaPropsMapper.writeValueAsProperties(object);
     }
 }

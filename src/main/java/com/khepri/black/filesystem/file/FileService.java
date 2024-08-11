@@ -1,6 +1,10 @@
 package com.khepri.black.filesystem.file;
 
+import com.khepri.black.json.JsonService;
 import org.apache.commons.io.FilenameUtils;
+
+import java.io.IOException;
+import java.util.Properties;
 
 public class FileService {
     private final String filePath;
@@ -13,23 +17,22 @@ public class FileService {
         this.fileHandler = fileType.getFileHandler();
     }
 
-    public String getFilePath() {
-        return filePath;
-    }
-
     public FileType getFileType() {
         return fileType;
-    }
-
-    public IFileHandler getFileHandler() {
-        return fileHandler;
     }
 
     public String getFileExtension() {
         return FilenameUtils.getExtension(filePath);
     }
 
-    public Object getFileContent() {
+    public Object getFileContent() throws IOException {
         return fileHandler.getFileContent(filePath);
+    }
+
+    public Properties getPropertiesFromFile() throws IOException {
+        if (getFileType().name().equalsIgnoreCase("json")) {
+            return JsonService.getPropertiesFromJsonObject((String) getFileContent());
+        }
+        return (Properties) getFileContent();
     }
 }

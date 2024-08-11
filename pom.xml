@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <apache.commons.io.version>RELEASE113</apache.commons.io.version>
         <graal.version>23.0.0</graal.version>
+        <jacoco.version>0.8.12</jacoco.version>
         <jackson.version>2.16.1</jackson.version>
         <junit.version>5.10.2</junit.version>
         <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
@@ -48,6 +49,11 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${jacoco.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -68,6 +74,30 @@
 
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
     </build>
 
     <profiles>

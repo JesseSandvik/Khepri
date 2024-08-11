@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ExecutorCommandTest {
@@ -36,14 +37,23 @@ public class ExecutorCommandTest {
     }
 
     @Test
-    void executing_command_returns_success_exit_code_for_successful_execution() throws Exception {
+    void should_return_fail_exit_code_when_executing_command_with_no_properties() throws Exception {
         int expected = 1;
+        int actual = executorCommand.call();
+        assertNull(executorCommand.getProperties());
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void should_return_fail_exit_code_when_executing_command_with_empty_properties() throws Exception {
+        int expected = 1;
+        executorCommand.setProperties(new Properties());
         int actual = executorCommand.call();
         assertEquals(expected, actual);
     }
 
     @Test
-    void executes_an_executable_file_from_the_file_system_with_positional_parameter() throws Exception {
+    void should_execute_file_at_executableFilePath_with_positional_parameter() throws Exception {
         String expected = "Hello, world!";
 
         PositionalParameter positionalParameter = new PositionalParameter();
@@ -59,7 +69,7 @@ public class ExecutorCommandTest {
     }
 
     @Test
-    void executes_an_executable_file_from_the_file_system_with_positional_parameters() throws Exception {
+    void should_execute_file_at_executableFilePath_with_multiple_positional_parameters() throws Exception {
         String expectedFirstParameter = "Hello";
         String expectedSecondParameter = "World!";
 
@@ -81,7 +91,7 @@ public class ExecutorCommandTest {
     }
 
     @Test
-    void executes_an_executable_file_from_the_file_system_with_option() throws Exception {
+    void should_execute_file_at_executableFilePath_with_option() throws Exception {
         String expected = "Hello, world!";
 
         Option option = new Option();
@@ -97,7 +107,7 @@ public class ExecutorCommandTest {
     }
 
     @Test
-    void executes_an_executable_file_from_the_file_system_with_options() throws Exception {
+    void should_execute_file_at_executableFilePath_with_multiple_options() throws Exception {
         String expectedFirstOption = "Hello";
         String expectedSecondOption = "World!";
 
@@ -119,7 +129,7 @@ public class ExecutorCommandTest {
     }
 
     @Test
-    void executes_an_executable_file_from_the_file_system_with_positional_parameter_and_option() throws Exception {
+    void should_execute_file_at_executableFilePath_with_positional_parameter_and_option() throws Exception {
         String expectedPositionalParameter = "Hello";
         String expectedOption = "World!";
 
@@ -141,7 +151,7 @@ public class ExecutorCommandTest {
     }
 
     @Test
-    void executes_an_executable_file_from_the_file_system_with_positional_parameters_and_options() throws Exception {
+    void should_execute_file_at_executableFilePath_with_multiple_positional_parameters_and_options() throws Exception {
         String firstExpectedPositionalParameter = "Hello";
         String firstExpectedOption = "World!";
         String secondExpectedPositionalParameter = "Welcome";

@@ -6,18 +6,14 @@ import java.io.IOException;
 
 class JsonFileHandler implements IFileHandler {
     @Override
-    public Object getFileContent(String path) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(path));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            reader.close();
-            return stringBuilder.toString();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public Object getFileContent(String path) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(path));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            stringBuilder.append(line);
         }
+        reader.close();
+        return stringBuilder.toString();
     }
 }

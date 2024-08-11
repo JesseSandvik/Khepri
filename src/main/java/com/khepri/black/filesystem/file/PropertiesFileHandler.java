@@ -6,13 +6,10 @@ import java.util.Properties;
 
 class PropertiesFileHandler implements IFileHandler {
     @Override
-    public Object getFileContent(String path) {
-        try (FileInputStream fileInputStream = new FileInputStream(path)) {
-            Properties properties = new Properties();
-            properties.load(fileInputStream);
-            return properties;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Object getFileContent(String path) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(path);
+        Properties properties = new Properties();
+        properties.load(fileInputStream);
+        return properties;
     }
 }

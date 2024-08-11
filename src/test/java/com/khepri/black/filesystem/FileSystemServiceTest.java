@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class FileSystemServiceTest {
     }
 
     @Test
-    void executes_provided_command() {
+    void should_execute_provided_command() throws IOException, InterruptedException {
         String expected = "Hello, world!";
         List<String> command = new ArrayList<>();
         command.add(executableFilePath);
@@ -39,7 +40,7 @@ public class FileSystemServiceTest {
     }
 
     @Test
-    void success_exit_code_for_successful_command_execution() {
+    void should_return_success_exit_code_for_successful_command_execution() throws IOException, InterruptedException {
         int expected = 0;
         List<String> command = new ArrayList<>();
         command.add(executableFilePath);
